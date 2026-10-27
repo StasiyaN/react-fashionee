@@ -1,0 +1,28 @@
+.find-us .find-us-text {
+    margin: 0 0 20px 0;
+    font-family: "Raleway", serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 170%;
+}
+
+.find-us .find-us-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.find-us .find-us-links .line {
+    height: 1px;
+    width: 10px;
+    border-bottom: 1px solid rgba(68, 68, 68);
+}
+
+.find-us .find-us-link a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    font-family: "Raleway", serif;
+    font-size: 12px;
+    font-weight: 600;
+}

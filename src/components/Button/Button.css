@@ -1,0 +1,27 @@
+.button-wrapper {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    max-width: 240px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.button-wrapper .button {
+    color: #FFFFFF;
+    font-family: "Raleway", serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    background: #000000;
+    padding: 17px 0;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+}
+
+.button-wrapper .button-line {
+    width: 2px;
+    height: 50px;
+    background: #000000;
+}

@@ -1,0 +1,35 @@
+.quantity {
+    background: #F8F8FB;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 23px;
+    height: 50px;
+}
+
+.quantity .count-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    color: #999999;
+    font-family: inherit;
+    font-size: 23px;
+    line-height: 160%;
+    font-weight: 500;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.quantity .count-btn:hover {
+    color: #000000;
+}
+
+.quantity .count {
+    min-width: 16px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 100%;
+    color: #000000;
+}

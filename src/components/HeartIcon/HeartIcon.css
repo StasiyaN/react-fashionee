@@ -1,0 +1,12 @@
+.heart-icon {
+    display: block;
+}
+
+.heart-icon path {
+    fill: #444444;
+    transition: fill 0.2s;
+}
+
+.heart-icon.active path {
+    fill: #FF8E8E;
+}

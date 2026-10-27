@@ -1,0 +1,21 @@
+.price {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: "Josefin Sans", serif;
+    line-height: 100%;
+}
+
+.price .current-price {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.price .old-price {
+    font-size: 16px;
+    font-weight: 300;
+    color: #444444;
+    text-decoration: line-through;
+    text-decoration-color: #444444;
+}
