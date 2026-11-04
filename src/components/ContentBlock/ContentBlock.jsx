@@ -2,7 +2,7 @@ import './ContentBlock.css'
 
 // title — название страницы (Shop, Cart)
 // breadcrumbs — промежуточные ссылки между Home и текущей страницей,
-// например для Cart: [{ title: 'Shop', page: 'shop' }]
+// например для Cart: [{ title: 'Shop', page: PAGES.SHOP }]
 // onNavigate — функция переключения страницы из App
 function ContentBlock({ title, breadcrumbs = [], onNavigate }) {
   const handleClick = (event, page) => {

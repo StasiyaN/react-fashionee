@@ -1,10 +1,11 @@
 import './Header.css'
+import { PAGES } from '../../constants'
 
 // page — на какую страницу ведёт пункт меню (если ведёт)
 const menuItems = [
   { title: 'Home', hasArrow: false },
   { title: 'Pages', hasArrow: true },
-  { title: 'Shop', hasArrow: true, page: 'shop' },
+  { title: 'Shop', hasArrow: true, page: PAGES.SHOP },
   { title: 'Blog', hasArrow: false },
   { title: 'Contact', hasArrow: false },
 ]
@@ -18,7 +19,7 @@ function Header({ currentPage, onNavigate, favoritesCount, cartCount }) {
             <input type="checkbox" id="burger-checkbox" className="burger-checkbox" />
             <label className="burger" htmlFor="burger-checkbox"></label>
           </div>
-          <div className="logo" onClick={() => onNavigate('shop')}>
+          <div className="logo" onClick={() => onNavigate(PAGES.SHOP)}>
             <img src="/img/logo.svg" alt="logo" />
           </div>
         </div>
@@ -53,7 +54,7 @@ function Header({ currentPage, onNavigate, favoritesCount, cartCount }) {
           <img src="/img/icons/favorites.svg" alt="favorites" />
           <div className="counter">{favoritesCount}</div>
         </div>
-        <div className="header-icon" onClick={() => onNavigate('cart')}>
+        <div className="header-icon" onClick={() => onNavigate(PAGES.CART)}>
           <img src="/img/icons/cart.svg" alt="cart" />
           <div className="counter">{cartCount}</div>
         </div>

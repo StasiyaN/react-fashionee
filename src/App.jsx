@@ -1,12 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import ShopPage from './pages/Shop/Shop.jsx'
 import CartPage from './pages/Cart/Cart.jsx'
+import { PAGES, STORAGE_KEYS } from './constants'
+import { loadFromStorage, saveToStorage } from './utils/storage.js'
 
 function App() {
-  const [page, setPage] = useState('shop') // 'shop' | 'cart'
-  const [favorites, setFavorites] = useState([]) // id товаров в избранном
-  const [cart, setCart] = useState([]) // товары в корзине: [{ id, quantity }]
+  const [page, setPage] = useState(PAGES.SHOP)
+  // начальное значение берём из localStorage (функция в useState вызывается только при первом рендере)
+  const [favorites, setFavorites] = useState(() => loadFromStorage(STORAGE_KEYS.FAVORITES, [])) // id товаров в избранном
+  const [cart, setCart] = useState(() => loadFromStorage(STORAGE_KEYS.CART, [])) // товары в корзине: [{ id, quantity }]
+
+  // при каждом изменении избранного / корзины сохраняем их в localStorage
+  useEffect(() => {
+    saveToStorage(STORAGE_KEYS.FAVORITES, favorites)
+  }, [favorites])
+
+  useEffect(() => {
+    saveToStorage(STORAGE_KEYS.CART, cart)
+  }, [cart])
 
   const navigate = (newPage) => {
     setPage(newPage)
@@ -49,7 +61,7 @@ function App() {
     cartCount,
   }
 
-  return page === 'shop' ? (
+  return page === PAGES.SHOP ? (
     <ShopPage
       headerProps={headerProps}
       favorites={favorites}

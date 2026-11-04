@@ -4,8 +4,7 @@ import OrderSummary from './OrderSummary.jsx'
 import PromoCode from './PromoCode.jsx'
 import Button from '../Button/Button.jsx'
 import data from '../../data/products.json'
-
-const DELIVERY_PRICE = 16
+import { PAGES, DELIVERY_PRICE } from '../../constants'
 
 function Cart({ cart, onChangeQuantity, onRemoveFromCart, onNavigate }) {
   // соединяем { id, quantity } из корзины с данными товара из каталога
@@ -19,7 +18,7 @@ function Cart({ cart, onChangeQuantity, onRemoveFromCart, onNavigate }) {
       <div className="cart-empty">
         <div className="title">Your cart is empty</div>
         <div className="description">Add products from the shop to place an order.</div>
-        <Button onClick={() => onNavigate('shop')}>Go to shop</Button>
+        <Button onClick={() => onNavigate(PAGES.SHOP)}>Go to shop</Button>
       </div>
     )
   }
