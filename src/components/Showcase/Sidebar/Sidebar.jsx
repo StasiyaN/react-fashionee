@@ -7,10 +7,10 @@ import ColorsFilter from './ColorsFilter.jsx'
 import ReviewedProducts from './ReviewedProducts.jsx'
 import Button from '../../Button/Button.jsx'
 
-function Sidebar({ reviewedProducts }) {
+function Sidebar({ searchValue, onSearchChange, reviewedProducts }) {
   return (
     <div className="sidebar">
-      <Search />
+      <Search value={searchValue} onChange={onSearchChange} />
 
       <SidebarItem title="Categories">
         <Categories />
