@@ -7,21 +7,43 @@ import ColorsFilter from './ColorsFilter.jsx'
 import ReviewedProducts from './ReviewedProducts.jsx'
 import Button from '../../Button/Button.jsx'
 
-function Sidebar({ searchValue, onSearchChange, filters, reviewedProducts }) {
+function Sidebar({
+  searchValue,
+  onSearchChange,
+  filters,
+  selectedFilters,
+  onFilterChange,
+  reviewedProducts,
+}) {
   return (
     <div className="sidebar">
       <Search value={searchValue} onChange={onSearchChange} />
 
       <SidebarItem title="Categories">
-        <Categories categories={filters.categories} />
+        <Categories
+          categories={filters.categories}
+          activeCategory={selectedFilters.category}
+          onChange={(category) => onFilterChange('category', category)}
+        />
       </SidebarItem>
 
       <SidebarItem title="Price">
-        <PriceFilter minPrice={filters.minPrice} maxPrice={filters.maxPrice} />
+        <PriceFilter
+          minPrice={filters.minPrice}
+          maxPrice={filters.maxPrice}
+          priceFrom={selectedFilters.priceFrom}
+          priceTo={selectedFilters.priceTo}
+          onPriceFromChange={(value) => onFilterChange('priceFrom', value)}
+          onPriceToChange={(value) => onFilterChange('priceTo', value)}
+        />
       </SidebarItem>
 
       <SidebarItem title="Colors">
-        <ColorsFilter colors={filters.colors} />
+        <ColorsFilter
+          colors={filters.colors}
+          selectedColors={selectedFilters.colors}
+          onChange={(colors) => onFilterChange('colors', colors)}
+        />
       </SidebarItem>
 
       <SidebarItem>
