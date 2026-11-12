@@ -5,6 +5,10 @@ import Products from './Products/Products.jsx'
 import data from '../../data/products.json'
 import { useDebounce } from '../../hooks/useDebounce.js'
 import { SEARCH_DEBOUNCE_DELAY } from '../../constants'
+import { getFilters } from '../../utils/getFilters.js'
+
+// фильтры считаем один раз — данные из json не меняются
+const filters = getFilters(data.products)
 
 function Showcase({ favorites, onToggleFavorite, cart, onAddToCart, onChangeQuantity }) {
   const [searchValue, setSearchValue] = useState('') // текст в инпуте — меняется сразу
@@ -23,6 +27,7 @@ function Showcase({ favorites, onToggleFavorite, cart, onAddToCart, onChangeQuan
       <Sidebar
         searchValue={searchValue}
         onSearchChange={setSearchValue}
+        filters={filters}
         reviewedProducts={reviewedProducts}
       />
       <Products

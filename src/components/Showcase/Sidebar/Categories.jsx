@@ -1,7 +1,7 @@
-const categories = ['All', 'Men', 'Women', 'Accessories', 'New Arrivals']
+import { ALL_CATEGORY } from '../../../constants'
 
-function Categories() {
-  const activeCategory = 'Men'
+function Categories({ categories }) {
+  const activeCategory = ALL_CATEGORY
 
   return (
     <ul className="categories-list">

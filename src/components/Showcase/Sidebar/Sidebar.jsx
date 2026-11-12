@@ -7,21 +7,21 @@ import ColorsFilter from './ColorsFilter.jsx'
 import ReviewedProducts from './ReviewedProducts.jsx'
 import Button from '../../Button/Button.jsx'
 
-function Sidebar({ searchValue, onSearchChange, reviewedProducts }) {
+function Sidebar({ searchValue, onSearchChange, filters, reviewedProducts }) {
   return (
     <div className="sidebar">
       <Search value={searchValue} onChange={onSearchChange} />
 
       <SidebarItem title="Categories">
-        <Categories />
+        <Categories categories={filters.categories} />
       </SidebarItem>
 
       <SidebarItem title="Price">
-        <PriceFilter />
+        <PriceFilter minPrice={filters.minPrice} maxPrice={filters.maxPrice} />
       </SidebarItem>
 
       <SidebarItem title="Colors">
-        <ColorsFilter />
+        <ColorsFilter colors={filters.colors} />
       </SidebarItem>
 
       <SidebarItem>

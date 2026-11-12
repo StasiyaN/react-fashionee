@@ -1,6 +1,4 @@
-const colors = ['Black', 'Blue', 'Red', 'Yellow', 'Green']
-
-function ColorsFilter() {
+function ColorsFilter({ colors }) {
   return (
     <div className="colors">
       {colors.map((color) => {
