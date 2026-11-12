@@ -6,6 +6,7 @@ import data from '../../data/products.json'
 import { useDebounce } from '../../hooks/useDebounce.js'
 import { SEARCH_DEBOUNCE_DELAY, ALL_CATEGORY } from '../../constants'
 import { getFilters } from '../../utils/getFilters.js'
+import { filterProducts } from '../../utils/filterProducts.js'
 
 // фильтры считаем один раз — данные из json не меняются
 const filters = getFilters(data.products)
@@ -21,20 +22,22 @@ const initialFilters = {
 function Showcase({ favorites, onToggleFavorite, cart, onAddToCart, onChangeQuantity }) {
   const [searchValue, setSearchValue] = useState('') // текст в инпуте — меняется сразу
   const debouncedSearch = useDebounce(searchValue, SEARCH_DEBOUNCE_DELAY) // по нему фильтруем — с задержкой
-  const [selectedFilters, setSelectedFilters] = useState(initialFilters) // что выбрано в сайдбаре (применится по Apply Filter)
+  const [selectedFilters, setSelectedFilters] = useState(initialFilters) // что выбрано в сайдбаре прямо сейчас
+  const [appliedFilters, setAppliedFilters] = useState(initialFilters) // что применено кнопкой Apply Filter — по нему фильтруем
 
   // меняем одно поле фильтра: name — 'category' | 'colors' | 'priceFrom' | 'priceTo'
   const changeFilter = (name, value) => {
     setSelectedFilters((prevFilters) => ({ ...prevFilters, [name]: value }))
   }
 
+  const applyFilter = () => {
+    setAppliedFilters(selectedFilters)
+  }
+
   const products = data.products
   const reviewedProducts = products.slice(0, 3)
 
-  const query = debouncedSearch.trim().toLowerCase()
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(query)
-  )
+  const filteredProducts = filterProducts(products, debouncedSearch, appliedFilters)
 
   return (
     <div className="shop">
@@ -44,6 +47,7 @@ function Showcase({ favorites, onToggleFavorite, cart, onAddToCart, onChangeQuan
         filters={filters}
         selectedFilters={selectedFilters}
         onFilterChange={changeFilter}
+        onApplyFilter={applyFilter}
         reviewedProducts={reviewedProducts}
       />
       <Products

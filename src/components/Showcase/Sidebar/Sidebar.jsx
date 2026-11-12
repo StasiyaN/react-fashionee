@@ -13,6 +13,7 @@ function Sidebar({
   filters,
   selectedFilters,
   onFilterChange,
+  onApplyFilter,
   reviewedProducts,
 }) {
   return (
@@ -47,7 +48,7 @@ function Sidebar({
       </SidebarItem>
 
       <SidebarItem>
-        <Button>Apply Filter</Button>
+        <Button onClick={onApplyFilter}>Apply Filter</Button>
       </SidebarItem>
 
       <SidebarItem title="Reviewed by you">
