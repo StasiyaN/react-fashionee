@@ -9,7 +9,7 @@ function App() {
   const [page, setPage] = useState(PAGES.SHOP)
   // начальное значение берём из localStorage (функция в useState вызывается только при первом рендере)
   const [favorites, setFavorites] = useState(() => loadFromStorage(STORAGE_KEYS.FAVORITES, [])) // id товаров в избранном
-  const [cart, setCart] = useState(() => loadFromStorage(STORAGE_KEYS.CART, [])) // товары в корзине: [{ id, quantity }]
+  const [cart, setCart] = useState(() => loadFromStorage(STORAGE_KEYS.CART, [])) // товары в корзине: [{ ...product, quantity }] — храним весь объект товара, чтобы не искать его по id в каталоге
 
   // при каждом изменении избранного / корзины сохраняем их в localStorage
   useEffect(() => {
@@ -35,8 +35,8 @@ function App() {
   }
 
   // ----- корзина -----
-  const addToCart = (id) => {
-    setCart((prevCart) => [...prevCart, { id, quantity: 1 }])
+  const addToCart = (product) => {
+    setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }])
   }
 
   // delta: +1 или -1; если количество стало 0 — товар удаляется из корзины

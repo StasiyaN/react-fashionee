@@ -36,7 +36,7 @@ function ProductCard({
       </div>
       <div className="product-actions">
         {cartQuantity === 0 ? (
-          <Button onClick={() => onAddToCart(product.id)}>Buy</Button>
+          <Button onClick={() => onAddToCart(product)}>Buy</Button>
         ) : (
           <Quantity
             count={cartQuantity}

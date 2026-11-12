@@ -3,17 +3,10 @@ import CartList from './CartList.jsx'
 import OrderSummary from './OrderSummary.jsx'
 import PromoCode from './PromoCode.jsx'
 import Button from '../Button/Button.jsx'
-import data from '../../data/products.json'
 import { PAGES, DELIVERY_PRICE } from '../../constants'
 
 function Cart({ cart, onChangeQuantity, onRemoveFromCart, onNavigate }) {
-  // соединяем { id, quantity } из корзины с данными товара из каталога
-  const cartItems = cart.map((item) => ({
-    ...data.products.find((product) => product.id === item.id),
-    quantity: item.quantity,
-  }))
-
-  if (cartItems.length === 0) {
+  if (cart.length === 0) {
     return (
       <div className="cart-empty">
         <div className="title">Your cart is empty</div>
@@ -23,14 +16,14 @@ function Cart({ cart, onChangeQuantity, onRemoveFromCart, onNavigate }) {
     )
   }
 
-  const orderPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const orderPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const total = orderPrice + DELIVERY_PRICE
 
   return (
     <div className="cart">
       <div className="order-wrapper">
         <CartList
-          items={cartItems}
+          items={cart}
           onChangeQuantity={onChangeQuantity}
           onRemove={onRemoveFromCart}
         />
