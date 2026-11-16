@@ -89,6 +89,12 @@
     gap: 15px;
 }
 
+.sidebar .price-hint {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #FF8E8E;
+}
+
 /* Colors */
 .sidebar .colors {
     display: flex;

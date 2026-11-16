@@ -35,8 +35,17 @@ function App() {
   }
 
   // ----- корзина -----
+  // если товар уже в корзине — увеличиваем его quantity, иначе добавляем новый объект
   const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }])
+    setCart((prevCart) => {
+      const isInCart = prevCart.some((item) => item.id === product.id)
+
+      return isInCart
+        ? prevCart.map((item) =>
+            item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          )
+        : [...prevCart, { ...product, quantity: 1 }]
+    })
   }
 
   // delta: +1 или -1; если количество стало 0 — товар удаляется из корзины
