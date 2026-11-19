@@ -7,6 +7,8 @@ export const DELIVERY_PRICE = 16
 
 export const SEARCH_DEBOUNCE_DELAY = 500 // мс
 
+export const PRODUCTS_PER_PAGE = 6 // товаров на одной странице пагинации
+
 export const ALL_CATEGORY = 'All'
 
 // варианты сортировки товаров

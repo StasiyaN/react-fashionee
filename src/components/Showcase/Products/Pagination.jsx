@@ -1,23 +1,48 @@
-const pages = [1, 2, 3]
+// постраничная навигация: показывает стрелки и номера страниц, о выборе сообщает родителю
+function Pagination({ currentPage, totalPages, onChangePage }) {
+  // одна страница — навигация не нужна
+  if (totalPages <= 1) {
+    return null
+  }
 
-function Pagination() {
-  const currentPage = 1
+  // [1, 2, 3, ...] — номера всех страниц
+  const pages = Array.from({ length: totalPages }, (_, index) => index + 1)
 
   return (
     <div className="pagination">
-      <div className="arrow left">
-        <img src="/img/icons/arrow-left.svg" alt="previous page" />
-      </div>
+      <button
+        type="button"
+        className="arrow left"
+        onClick={() => onChangePage(currentPage - 1)}
+        disabled={currentPage === 1}
+        aria-label="Previous page"
+      >
+        <img src="/img/icons/arrow-left.svg" alt="" />
+      </button>
+
       <div className="pages">
         {pages.map((page) => (
-          <div className={page === currentPage ? 'page active' : 'page'} key={page}>
+          <button
+            type="button"
+            className={page === currentPage ? 'page active' : 'page'}
+            key={page}
+            onClick={() => onChangePage(page)}
+            aria-current={page === currentPage ? 'page' : undefined}
+          >
             {page}
-          </div>
+          </button>
         ))}
       </div>
-      <div className="arrow right">
-        <img src="/img/icons/arrow-right.svg" alt="next page" />
-      </div>
+
+      <button
+        type="button"
+        className="arrow right"
+        onClick={() => onChangePage(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        aria-label="Next page"
+      >
+        <img src="/img/icons/arrow-right.svg" alt="" />
+      </button>
     </div>
   )
 }
