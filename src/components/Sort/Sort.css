@@ -1,0 +1,14 @@
+.sort {
+    max-width: 262px;
+    width: 100%;
+}
+
+.sort .input {
+    color: #000000;
+    cursor: pointer;
+}
+
+.sort .input option {
+    font-size: 14px;
+    line-height: 24px;
+}

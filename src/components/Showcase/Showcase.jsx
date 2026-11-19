@@ -4,9 +4,10 @@ import Sidebar from './Sidebar/Sidebar.jsx'
 import Products from './Products/Products.jsx'
 import data from '../../data/products.json'
 import { useDebounce } from '../../hooks/useDebounce.js'
-import { SEARCH_DEBOUNCE_DELAY, ALL_CATEGORY } from '../../constants'
+import { SEARCH_DEBOUNCE_DELAY, ALL_CATEGORY, SORT_VALUES } from '../../constants'
 import { getFilters } from '../../utils/getFilters.js'
 import { filterProducts } from '../../utils/filterProducts.js'
+import { sortProducts } from '../../utils/sortProducts.js'
 
 // фильтры считаем один раз — данные из json не меняются
 const filters = getFilters(data.products)
@@ -24,6 +25,7 @@ function Showcase({ favorites, onToggleFavorite, cart, onAddToCart, onChangeQuan
   const debouncedSearch = useDebounce(searchValue, SEARCH_DEBOUNCE_DELAY) // по нему фильтруем — с задержкой
   const [selectedFilters, setSelectedFilters] = useState(initialFilters) // что выбрано в сайдбаре прямо сейчас
   const [appliedFilters, setAppliedFilters] = useState(initialFilters) // что применено кнопкой Apply Filter — по нему фильтруем
+  const [sortValue, setSortValue] = useState(SORT_VALUES.RELEVANCE) // выбранный вариант сортировки
 
   // меняем одно поле фильтра: name — 'category' | 'colors' | 'priceFrom' | 'priceTo'
   const changeFilter = (name, value) => {
@@ -38,6 +40,7 @@ function Showcase({ favorites, onToggleFavorite, cart, onAddToCart, onChangeQuan
   const reviewedProducts = products.slice(0, 3)
 
   const filteredProducts = filterProducts(products, debouncedSearch, appliedFilters)
+  const sortedProducts = sortProducts(filteredProducts, sortValue)
 
   return (
     <div className="shop">
@@ -51,12 +54,14 @@ function Showcase({ favorites, onToggleFavorite, cart, onAddToCart, onChangeQuan
         reviewedProducts={reviewedProducts}
       />
       <Products
-        products={filteredProducts}
+        products={sortedProducts}
         favorites={favorites}
         onToggleFavorite={onToggleFavorite}
         cart={cart}
         onAddToCart={onAddToCart}
         onChangeQuantity={onChangeQuantity}
+        sortValue={sortValue}
+        onSortChange={setSortValue}
       />
     </div>
   )

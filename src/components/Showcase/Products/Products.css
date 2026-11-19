@@ -10,6 +10,7 @@
 .products-wrapper .sort-and-count {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 40px;
 }
 
@@ -22,21 +23,6 @@
 
 .products-wrapper .products-count .bold {
     font-weight: 600;
-}
-
-.products-wrapper .products-sort {
-    max-width: 262px;
-    width: 100%;
-}
-
-.products-wrapper .products-sort .input {
-    color: #000000;
-    cursor: pointer;
-}
-
-.products-wrapper .products-sort select option {
-    font-size: 14px;
-    line-height: 24px;
 }
 
 /* Product cards */

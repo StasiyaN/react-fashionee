@@ -3,7 +3,16 @@ import SortAndCount from './SortAndCount.jsx'
 import ProductCard from './ProductCard.jsx'
 import Pagination from './Pagination.jsx'
 
-function Products({ products, favorites, onToggleFavorite, cart, onAddToCart, onChangeQuantity }) {
+function Products({
+  products,
+  favorites,
+  onToggleFavorite,
+  cart,
+  onAddToCart,
+  onChangeQuantity,
+  sortValue,
+  onSortChange,
+}) {
   // сколько штук этого товара уже в корзине (0 — если нет)
   const getCartQuantity = (id) => {
     const cartItem = cart.find((item) => item.id === id)
@@ -12,7 +21,7 @@ function Products({ products, favorites, onToggleFavorite, cart, onAddToCart, on
 
   return (
     <div className="products-wrapper">
-      <SortAndCount count={products.length} />
+      <SortAndCount count={products.length} sortValue={sortValue} onSortChange={onSortChange} />
 
       <div className="products">
         {products.map((product) => (
